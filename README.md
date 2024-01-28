@@ -1,1 +1,1 @@
-# Machine Learning Movie Recommender Project usine Content based based system
+# Movie Recommender Project using Content based based system
