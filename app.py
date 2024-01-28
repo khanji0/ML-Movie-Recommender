@@ -1,14 +1,15 @@
-import pickle  
-import streamlit as st  # creating the web application
-import pandas as pd  
-import requests  # For making HTTP requests
+import pickle
+import streamlit as st
+import pandas as pd
+import requests
+import gzip
 
 # Function to add custom CSS for the background
 def change_background_color():
     st.markdown("""
         <style>
         .stApp {
-            background-color: lightgreen;  
+            background-color: lightblue;  
         }
         </style>
         """, unsafe_allow_html=True)
@@ -43,10 +44,13 @@ def recommendation(movie):
 
     return recommended_movies, recommended_movie_posters
 
-# Loading movie data and similarity matrix from pickled files
+# Loading movie data from pickled file
 all_movies = pickle.load(open('movies.pkl', 'rb'))
 movies = pd.DataFrame(all_movies)
-similarity = pickle.load(open('similarity.pkl', 'rb'))
+
+# Loading the compressed similarity matrix
+with gzip.open('similarity.pkl.gz', 'rb') as f:
+    similarity = pickle.load(f)
 
 # Dropdown box for the user to choose a movie
 select_movie_names = st.selectbox("Which movie do you want a recommendation for?", movies['title'].values)
@@ -60,4 +64,4 @@ if st.button('Recommend'):
         with cols[i]:  
             st.text(recommended_movies[i])
             st.image(recommended_movie_posters[i], width=120)  
-            st.write("\n")  # Adding spacing after each movie
+            st.write("\n")  
