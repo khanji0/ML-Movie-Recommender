@@ -1,0 +1,13 @@
+prefix=/Users/jibrankhan/Desktop/ml_project/movie_recommender/venv
+exec_prefix=/Users/jibrankhan/Desktop/ml_project/movie_recommender/venv
+libdir=/Users/jibrankhan/Desktop/ml_project/movie_recommender/venv/lib
+sharedlibdir=/Users/jibrankhan/Desktop/ml_project/movie_recommender/venv/lib
+includedir=/Users/jibrankhan/Desktop/ml_project/movie_recommender/venv/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.13
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}
